@@ -5,22 +5,29 @@ import java.util.Scanner;
 public class WordGame {
 
     public static void main(String[] args) {
-        //Scanner, base word, input 
         Scanner kb = new Scanner(System.in);
-        String word = "BUTTER";
         String input;
+        int gamble = ((int) ((Math.random() * 100) % 5 + 1));
+        Words word = new Words(gamble);
+        int verdict = word.getVerdict();
 
-        //Guess word, convert word to uppercase
-        System.out.println("Guess the word >> ");
-        input = kb.nextLine();
-        input = input.toUpperCase();
+        String answer = word.getWord();
+        System.out.println(gamble);
+        System.out.println(verdict);
 
-        //if input is the same as word, correct. Else, incorrect.
-        if (input.equals(word)) {
-            System.out.println("Correct!");
-        } else {
-            System.out.println("Incorrect!");
-        }
+        do {
+            System.out.print("Enter Password: ");
+
+            input = kb.nextLine();
+
+            if (input.equals(answer)) {
+                System.out.println("Correct!");
+                break;
+            } else {
+                System.out.println("Wrong");
+                System.out.println("Please try a different password!");
+            }
+        } while (!input.equals(word));
     }
 
 }
